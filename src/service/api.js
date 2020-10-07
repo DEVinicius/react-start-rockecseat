@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost/jwt-rest-api"
+    baseURL: "https://cat-fact.herokuapp.com/"
 });
 
 export default api;

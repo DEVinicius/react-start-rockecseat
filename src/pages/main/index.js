@@ -1,13 +1,41 @@
 import React, {Component} from 'react';
 import api from "../../service/api";
+import './style.css'
 
 export default class Main extends Component{
-    //função para executar assim que um componente for exibido na tela
-    
-    componentDidMount(){
-
+    //estados em React
+    state = {
+        facts: []
     }
+
+    //função para executar assim que um componente for exibido na tela
+    componentDidMount(){
+        this.loadCats();
+    }
+
+    loadCats = async () => {
+        const response = await api.get('/facts');
+        console.log(response.data.all);
+
+        this.setState({
+            facts: response.data.all
+        })
+    }
+
     render(){
-        return <h1>Ola</h1>
+        return (
+            <div className="product-list">
+                {this.state.facts.map(
+                    fact => (
+                        <article key={fact._id}>
+                            <strong>{fact.text}</strong>
+                            <p>{fact.type}</p>
+
+                            <a href="#">Acessar</a>
+                        </article>
+                    )
+                )}
+            </div>
+        )
     }
 }
