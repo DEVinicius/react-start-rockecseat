@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import api from "../../service/api";
 import './style.css'
 
@@ -31,7 +32,7 @@ export default class Main extends Component{
                             <strong>{fact.text}</strong>
                             <p>{fact.type}</p>
 
-                            <a href="#">Acessar</a>
+                            <Link to={`/data/${fact._id}`}>Acessar</Link>
                         </article>
 
                     )
